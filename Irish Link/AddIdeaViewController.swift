@@ -17,8 +17,13 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
     
     
     //MARK: Actions
+
+    @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: {});
+    }
     
-    @IBAction func saveAction(_ sender: UIBarButtonItem) {
+    @IBAction func saveBarButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: {});
     }
     
     override func viewDidLoad() {

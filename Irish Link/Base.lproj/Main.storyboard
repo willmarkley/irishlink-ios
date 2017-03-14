@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4B1-Cu-E6Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TOS-G2-zYa">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,52 +23,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GXf-fs-NJx">
-                                <rect key="frame" x="35" y="94" width="344" height="300"/>
+                                <rect key="frame" x="35" y="94" width="344" height="140"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cj-0V-OYh">
-                                        <rect key="frame" x="0.0" y="0.0" width="344" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="PwR-Oe-HII"/>
-                                        </constraints>
-                                        <state key="normal" title="Add Idea"/>
-                                        <connections>
-                                            <segue destination="2nE-ha-Bxz" kind="presentation" identifier="AddIdea" id="iyn-0n-n1J"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sn-Hy-RU5">
-                                        <rect key="frame" x="0.0" y="80" width="344" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="ds2-I8-Wpb"/>
-                                        </constraints>
-                                        <state key="normal" title="Add Developer"/>
-                                        <connections>
-                                            <segue destination="FRG-5q-uUJ" kind="presentation" identifier="AddDeveloper" id="1c1-UG-vsP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-n0-pWV">
-                                        <rect key="frame" x="0.0" y="160" width="344" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Fbb-Wr-guu"/>
                                         </constraints>
                                         <state key="normal" title="Browse Ideas"/>
-                                        <connections>
-                                            <segue destination="30E-P3-NIZ" kind="show" id="f2b-vY-0lW"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbs-XT-aH5">
-                                        <rect key="frame" x="0.0" y="240" width="344" height="60"/>
+                                        <rect key="frame" x="0.0" y="80" width="344" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="pMB-fy-99k"/>
                                         </constraints>
                                         <state key="normal" title="Browse Developers"/>
-                                        <connections>
-                                            <segue destination="iUF-zH-wpA" kind="show" id="nwF-69-8eo"/>
-                                        </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="yzm-pi-LUt"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,9 +53,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+            <point key="canvasLocation" x="3357" y="-666"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Ideas-->
         <scene sceneID="x8J-6p-bxo">
             <objects>
                 <tableViewController id="30E-P3-NIZ" sceneMemberID="viewController">
@@ -107,12 +78,19 @@
                             <outlet property="delegate" destination="30E-P3-NIZ" id="phm-wt-Aib"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Ideas" id="v5Y-6T-XK3">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="OVo-Ha-Yqh">
+                            <connections>
+                                <segue destination="2nE-ha-Bxz" kind="presentation" id="eDy-dI-AMi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btc-UU-1uS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="883"/>
+            <point key="canvasLocation" x="5407" y="-47"/>
         </scene>
-        <!--Developer Table View Controller-->
+        <!--Developers-->
         <scene sceneID="1Ep-LV-pX1">
             <objects>
                 <tableViewController id="iUF-zH-wpA" customClass="DeveloperTableViewController" customModule="Irish_Link" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,10 +150,19 @@
                             <outlet property="delegate" destination="iUF-zH-wpA" id="0ey-MM-WF5"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Developers" id="gKy-yw-CEq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b48-PX-g7t">
+                            <connections>
+                                <segue destination="FRG-5q-uUJ" kind="presentation" id="vNe-E3-i9y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOR-IE-fzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3355.072463768116" y="882.88043478260875"/>
+            <point key="canvasLocation" x="5407" y="883"/>
         </scene>
         <!--Add Idea-->
         <scene sceneID="ofq-ql-FSE">
@@ -286,10 +273,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Idea" id="Smy-ij-Sus">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vfe-51-Egj"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vfe-51-Egj">
+                            <connections>
+                                <action selector="cancelBarButton:" destination="kIQ-lL-1Kc" id="Ien-hN-FHz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="vJE-87-wP4">
                             <connections>
-                                <action selector="saveAction:" destination="kIQ-lL-1Kc" id="7j4-1f-pXy"/>
+                                <action selector="saveBarButton:" destination="kIQ-lL-1Kc" id="oNN-P7-7Fk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -300,12 +291,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbG-sA-Dzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3356" y="-697.60119940029995"/>
+            <point key="canvasLocation" x="7170" y="-47"/>
         </scene>
         <!--Add Developer-->
         <scene sceneID="D1l-qp-kBk">
             <objects>
-                <viewController id="al7-Pg-RXg" sceneMemberID="viewController">
+                <viewController id="al7-Pg-RXg" customClass="AddDeveloperViewController" customModule="Irish_Link" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7p-2n-hfk"/>
                         <viewControllerLayoutGuide type="bottom" id="O4J-MC-nW5"/>
@@ -411,31 +402,30 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Developer" id="QXE-v2-AzW">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lLo-VH-tcb"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RDA-Ki-Bi3"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lLo-VH-tcb">
+                            <connections>
+                                <action selector="cancelBarButton:" destination="al7-Pg-RXg" id="m9K-gk-fR3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RDA-Ki-Bi3">
+                            <connections>
+                                <action selector="saveBarButton:" destination="al7-Pg-RXg" id="p67-Xd-EYt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="androidSwitch" destination="Q0Z-MF-h5B" id="PYT-E9-m7V"/>
+                        <outlet property="desktopSwitch" destination="FpV-68-X9H" id="9nQ-6t-FYx"/>
+                        <outlet property="emailTextField" destination="Zwv-qI-5Vm" id="Jv0-Nb-oEp"/>
+                        <outlet property="iosSwitch" destination="cew-h0-SQl" id="gTy-45-a0c"/>
+                        <outlet property="languagesTextField" destination="hdO-Cp-2Q5" id="VTJ-7E-cpG"/>
+                        <outlet property="nameTextField" destination="xaO-cu-ooY" id="HOt-4k-iEo"/>
+                        <outlet property="webSwitch" destination="2ny-fi-oaX" id="Keu-z9-mvL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcM-Nt-br9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3356" y="7.6461769115442282"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="U36-Lj-sbu">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4B1-Cu-E6Y" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gE5-I4-LT7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="CUx-hu-eZc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9JX-cv-Bg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="7171" y="883"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZL7-5e-cO8">
@@ -453,7 +443,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1CK-4T-TD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="-698"/>
+            <point key="canvasLocation" x="6325" y="-47"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dYh-6D-vaX">
@@ -471,7 +461,63 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URg-n6-x0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2042" y="8"/>
+            <point key="canvasLocation" x="6326" y="883"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="GHg-qy-XUH">
+            <objects>
+                <tabBarController id="TOS-G2-zYa" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="nAb-ao-aA2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="tB6-IF-EEv" kind="relationship" relationship="viewControllers" id="xlA-MP-Zid"/>
+                        <segue destination="m0B-NK-c2I" kind="relationship" relationship="viewControllers" id="9BY-9O-94L"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdf-fI-8jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3357" y="360"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="VYT-vK-gla">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m0B-NK-c2I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="9rh-Dt-2WM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GjS-JG-iAT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iUF-zH-wpA" kind="relationship" relationship="rootViewController" id="hrh-Za-sL6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bqy-nq-ykL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4480" y="883"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="Z0h-9N-DFj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tB6-IF-EEv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="a4S-Vu-kHi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RQg-lF-QPK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="30E-P3-NIZ" kind="relationship" relationship="rootViewController" id="AJb-52-mTJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i4p-DH-GmP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4480" y="-47"/>
         </scene>
     </scenes>
 </document>

@@ -72,8 +72,8 @@ class DeveloperTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadApiDevelopers()
-        //loadSampleDevelopers()
+        //loadApiDevelopers()
+        loadSampleDevelopers()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
