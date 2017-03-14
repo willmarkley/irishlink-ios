@@ -322,8 +322,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="androidSwitch" destination="2t2-5S-bNv" id="ylF-61-aD6"/>
+                        <outlet property="descriptionTextField" destination="AcT-EU-b3V" id="lzJ-CH-h2X"/>
+                        <outlet property="desktopSwitch" destination="iBl-5Q-MMQ" id="o9f-gA-Xur"/>
                         <outlet property="emailTextField" destination="Pmk-X9-xbD" id="27b-sp-pm8"/>
+                        <outlet property="iosSwitch" destination="M3y-mB-khO" id="zur-Ti-LSr"/>
                         <outlet property="nameTextField" destination="r2S-2T-dDM" id="8r4-oD-QnX"/>
+                        <outlet property="webSwitch" destination="ke8-Em-mRD" id="nZJ-jt-G11"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbG-sA-Dzl" userLabel="First Responder" sceneMemberID="firstResponder"/>

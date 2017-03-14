@@ -65,7 +65,6 @@ class AddDeveloperViewController: UIViewController {
             }
         })
         task.resume()
-
         
         self.dismiss(animated: true, completion: {});
     }
