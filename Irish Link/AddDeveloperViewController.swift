@@ -20,6 +20,9 @@ class AddDeveloperViewController: UIViewController {
     @IBOutlet weak var desktopSwitch: UISwitch!
     @IBOutlet weak var languagesTextField: UITextField!
     
+    var developers = [Developer]()
+    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+    
     //MARK: Actions
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
@@ -27,6 +30,43 @@ class AddDeveloperViewController: UIViewController {
     }
     
     @IBAction func saveBarButton(_ sender: UIBarButtonItem) {
+        let inputName    = nameTextField.text
+        let inputEmail   = emailTextField.text
+        var inputIos     = 0
+        var inputAndroid = 0
+        var inputWeb     = 0
+        var inputDesktop = 0
+        if iosSwitch.isOn {
+            inputIos = 1
+        }
+        if androidSwitch.isOn {
+            inputAndroid = 1
+        }
+        if webSwitch.isOn {
+            inputWeb = 1
+        }
+        if desktopSwitch.isOn {
+            inputDesktop = 1
+        }
+        let inputLanguages = languagesTextField.text
+        
+        let data = ["name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "languages": inputLanguages!] as [String:Any]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error)
+            }
+        })
+        task.resume()
+
+        
         self.dismiss(animated: true, completion: {});
     }
     
