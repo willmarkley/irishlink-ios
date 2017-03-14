@@ -13,6 +13,7 @@ class DeveloperTableViewController: UITableViewController {
     //MARK: Properties
     
     var developers = [Developer]()
+    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
     
     //MARK: Private Functions
     private func loadSampleDevelopers() {
@@ -22,11 +23,61 @@ class DeveloperTableViewController: UITableViewController {
         
         developers += [developer1, developer2, developer3]
     }
+    
+    private func loadApiDevelopers() {
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var developerEntries = [Developer]()
+
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error)
+            }
+            
+            let responseData = data
+            
+            do{
+                let jsonData = try JSONSerialization.jsonObject(with: responseData!, options: []) as? NSArray
+                for jsonObject in jsonData!{
+                    if let object = jsonObject as? NSDictionary{
+                        let entryName      = object["name"] as? String
+                        let entryEmail     = object["email"] as? String
+                        let entryiOS       = object["iosapp"] as? NSNumber
+                        let entryAndroid   = object["androidapp"] as? NSNumber
+                        let entryWeb       = object["webapp"] as? NSNumber
+                        let entryDesktop   = object["desktopapp"] as? NSNumber
+                        let entryLanguages = object["languages"] as? String
+                        
+                        let boolEntryiOS     = Bool(entryiOS!)
+                        let boolEntryAndroid = Bool(entryAndroid!)
+                        let boolEntryWeb     = Bool(entryWeb!)
+                        let boolEntryDesktop = Bool(entryDesktop!)
+                        
+                        //print(entryName!)
+                        //print(entryEmail!)
+                        //print(entryLanguages!)
+                        
+                        let developerEntry = Developer(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, languages: entryLanguages!)
+                        
+                        developerEntries.append(developerEntry)
+                    }
+                }
+            }catch {
+                fatalError("error in JSONSerialization")
+            }
+            self.developers = developerEntries
+            self.tableView.reloadData()
+        })
+        task.resume()
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSampleDevelopers()
+        loadApiDevelopers()
+        //loadSampleDevelopers()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
