@@ -55,10 +55,6 @@ class DeveloperTableViewController: UITableViewController {
                         let boolEntryWeb     = Bool(entryWeb!)
                         let boolEntryDesktop = Bool(entryDesktop!)
                         
-                        //print(entryName!)
-                        //print(entryEmail!)
-                        //print(entryLanguages!)
-                        
                         let developerEntry = Developer(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, languages: entryLanguages!)
                         
                         developerEntries.append(developerEntry)
@@ -68,7 +64,7 @@ class DeveloperTableViewController: UITableViewController {
                 fatalError("error in JSONSerialization")
             }
             self.developers = developerEntries
-            self.tableView.reloadData()
+            self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
         })
         task.resume()
         }
