@@ -1,36 +1,36 @@
 //
-//  DeveloperTableViewController.swift
+//  IdeaTableViewController.swift
 //  Irish Link
 //
-//  Created by William Markley on 3/12/17.
+//  Created by William Markley on 3/14/17.
 //  Copyright © 2017 William Markley. All rights reserved.
 //
 
 import UIKit
 
-class DeveloperTableViewController: UITableViewController {
+class IdeaTableViewController: UITableViewController {
     
     //MARK: Properties
     
-    var developers = [Developer]()
-    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+    var ideas = [Idea]()
+    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
     
     //MARK: Private Functions
     
-    private func loadSampleDevelopers() {
-        let developer1 = Developer(name: "William", email: "wmarkley@nd.edu", iOS: true, android: false, web: true, desktop: true, languages: "C++")
-        let developer2 = Developer(name: "Claire", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: true, languages: "Java")
-        let developer3 = Developer(name: "Catherine", email: "wmarkley@nd.edu", iOS: false, android: false, web: true, desktop: false, languages: "Python")
+    private func loadSampleIdeas() {
+        let idea1 = Idea(name: "William", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: false, description: "App to connect ideators")
+        let idea2 = Idea(name: "Catherine", email: "wmarkley@nd.edu", iOS: true, android: true, web: true, desktop: false, description: "Cottage App")
+        let idea3 = Idea(name: "Dad", email: "wmarkley@nd.edu", iOS: false, android: true, web: false, desktop: true, description: "Sunset App")
         
-        developers += [developer1, developer2, developer3]
+        ideas += [idea1, idea2, idea3]
     }
     
-    private func loadApiDevelopers() {
+    private func loadApiIdeas() {
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        var developerEntries = [Developer]()
-
+        var ideaEntries = [Idea]()
+        
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if error != nil {
@@ -43,28 +43,28 @@ class DeveloperTableViewController: UITableViewController {
                 let jsonData = try JSONSerialization.jsonObject(with: responseData!, options: []) as? NSArray
                 for jsonObject in jsonData!{
                     if let object = jsonObject as? NSDictionary{
-                        let entryName      = object["name"] as? String
-                        let entryEmail     = object["email"] as? String
-                        let entryiOS       = object["iosapp"] as? NSNumber
-                        let entryAndroid   = object["androidapp"] as? NSNumber
-                        let entryWeb       = object["webapp"] as? NSNumber
-                        let entryDesktop   = object["desktopapp"] as? NSNumber
-                        let entryLanguages = object["languages"] as? String
+                        let entryName        = object["name"] as? String
+                        let entryEmail       = object["email"] as? String
+                        let entryiOS         = object["iosapp"] as? NSNumber
+                        let entryAndroid     = object["androidapp"] as? NSNumber
+                        let entryWeb         = object["webapp"] as? NSNumber
+                        let entryDesktop     = object["desktopapp"] as? NSNumber
+                        let entryDescription = object["description"] as? String
                         
                         let boolEntryiOS     = Bool(entryiOS!)
                         let boolEntryAndroid = Bool(entryAndroid!)
                         let boolEntryWeb     = Bool(entryWeb!)
                         let boolEntryDesktop = Bool(entryDesktop!)
                         
-                        let developerEntry = Developer(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, languages: entryLanguages!)
+                        let ideaEntry = Idea(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, description: entryDescription!)
                         
-                        developerEntries.append(developerEntry)
+                        ideaEntries.append(ideaEntry)
                     }
                 }
             }catch {
                 fatalError("error in JSONSerialization")
             }
-            self.developers = developerEntries
+            self.ideas = ideaEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
         })
         task.resume()
@@ -73,8 +73,8 @@ class DeveloperTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadApiDevelopers()
-        //loadSampleDevelopers()
+        loadApiIdeas()
+        //loadSampleIdeas()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -95,23 +95,23 @@ class DeveloperTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return developers.count
+        return ideas.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "DeveloperTableViewCell"
+        let cellIdentifier = "IdeaTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DeveloperTableViewCell else {
-            fatalError("The dequened cell is not an instance of DeveloperTableViewCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? IdeaTableViewCell else {
+            fatalError("The dequened cell is not an instance of IdeaTableViewCell")
         }
-
-        let developer = developers[indexPath.row]
         
-        cell.nameLabel.text = developer.name
-        cell.appsLabel.text = developer.apps
-        cell.languagesLabel.text = developer.languages
-        cell.buttonLabel.setTitle(developer.email, for: .normal)
+        let idea = ideas[indexPath.row]
+        
+        cell.nameLabel.text = idea.name
+        cell.appsLabel.text = idea.apps
+        cell.descriptionLabel.text = idea.description
+        cell.buttonLabel.setTitle(idea.email, for: .normal)
 
         return cell
     }

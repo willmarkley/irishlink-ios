@@ -1,20 +1,20 @@
 //
-//  DeveloperTableViewCell.swift
+//  IdeaTableViewCell.swift
 //  Irish Link
 //
-//  Created by William Markley on 3/2/17.
+//  Created by William Markley on 3/14/17.
 //  Copyright © 2017 William Markley. All rights reserved.
 //
 
 import UIKit
 
-class DeveloperTableViewCell: UITableViewCell {
+class IdeaTableViewCell: UITableViewCell {
     
     //MARK: Properties
-
-    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var appsLabel: UILabel!
-    @IBOutlet weak var languagesLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var buttonLabel: UIButton!
     
     //MARK: Actions
