@@ -13,9 +13,20 @@ class DeveloperTableViewController: UITableViewController {
     //MARK: Properties
     
     var developers = [Developer]()
+    
+    //MARK: Private Functions
+    private func loadSampleDevelopers() {
+        let developer1 = Developer(name: "William", email: "wmarkley@nd.edu", iOS: true, android: false, web: true, desktop: true, languages: "C++")
+        let developer2 = Developer(name: "Claire", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: true, languages: "Java")
+        let developer3 = Developer(name: "Catherine", email: "wmarkley@nd.edu", iOS: false, android: false, web: true, desktop: false, languages: "Python")
+        
+        developers += [developer1, developer2, developer3]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadSampleDevelopers()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,24 +43,32 @@ class DeveloperTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return developers.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "DeveloperTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DeveloperTableViewCell else {
+            fatalError("The dequened cell is not an instance of DeveloperTableViewCell")
+        }
 
-        // Configure the cell...
+        let developer = developers[indexPath.row]
+        
+        cell.nameLabel.text = developer.name
+        cell.appsLabel.text = developer.apps
+        cell.languagesLabel.text = developer.languages
+        cell.buttonLabel.setTitle(developer.email, for: .normal)
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

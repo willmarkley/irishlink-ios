@@ -15,10 +15,15 @@ class DeveloperTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var appsLabel: UILabel!
     @IBOutlet weak var languagesLabel: UILabel!
+    @IBOutlet weak var buttonLabel: UIButton!
     
     //MARK: Actions
     
     @IBAction func emailButton(_ sender: UIButton) {
+        let email = buttonLabel.titleLabel!.text!
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.open(url)
+        }
     }
 
     override func awakeFromNib() {
