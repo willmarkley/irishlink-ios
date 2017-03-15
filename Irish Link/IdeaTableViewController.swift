@@ -8,12 +8,18 @@
 
 import UIKit
 
-class IdeaTableViewController: UITableViewController {
+class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     //MARK: Properties
     
     var ideas = [Idea]()
     var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
+    
+    //MARK: Actions
+
+    @IBAction func signOutBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance().signOut()
+    }
     
     //MARK: Private Functions
     

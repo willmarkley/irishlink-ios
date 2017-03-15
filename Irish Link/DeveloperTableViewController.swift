@@ -8,12 +8,17 @@
 
 import UIKit
 
-class DeveloperTableViewController: UITableViewController {
+class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     //MARK: Properties
     
     var developers = [Developer]()
     var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+    
+    //MARK: Actions
+    @IBAction func signOutBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance().signOut()
+    }
     
     //MARK: Private Functions
     

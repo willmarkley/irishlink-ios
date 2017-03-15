@@ -26,22 +26,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2Y-2S-DE0">
-                                <rect key="frame" x="87" y="602" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="See App"/>
-                                <connections>
-                                    <segue destination="TOS-G2-zYa" kind="presentation" id="ORY-mN-SZX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMw-rC-vbw">
-                                <rect key="frame" x="87" y="647" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="didTapSignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fqy-ez-98A"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -49,7 +33,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566.666666666667" y="359.51086956521743"/>
+            <point key="canvasLocation" x="2312" y="360"/>
         </scene>
         <!--Ideas-->
         <scene sceneID="x8J-6p-bxo">
@@ -64,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aMN-iO-yfe" id="zke-ws-re1">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfH-0E-xi5">
@@ -112,6 +96,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Ideas" id="v5Y-6T-XK3">
+                        <barButtonItem key="leftBarButtonItem" title="Sign-Out" id="q1O-FP-CkU">
+                            <connections>
+                                <action selector="signOutBarButton:" destination="30E-P3-NIZ" id="dqd-1s-TV8"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="8en-as-V92"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="OVo-Ha-Yqh">
                             <connections>
                                 <segue destination="2nE-ha-Bxz" kind="presentation" id="eDy-dI-AMi"/>
@@ -136,7 +126,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uoO-wp-DQJ" id="dIV-tG-ZoT">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHL-Au-HKm">
@@ -185,6 +175,12 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Developers" id="gKy-yw-CEq">
+                        <barButtonItem key="leftBarButtonItem" title="Sign-Out" id="Qkk-zt-bXE">
+                            <connections>
+                                <action selector="signOutBarButton:" destination="iUF-zH-wpA" id="UEH-Br-FqY"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="Ybb-tK-i7q"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="b48-PX-g7t">
                             <connections>
                                 <segue destination="FRG-5q-uUJ" kind="presentation" id="vNe-E3-i9y"/>
@@ -504,7 +500,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="GHg-qy-XUH">
             <objects>
-                <tabBarController id="TOS-G2-zYa" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomePage" id="TOS-G2-zYa" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="nAb-ao-aA2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -558,4 +554,7 @@
             <point key="canvasLocation" x="4480" y="-47"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8en-as-V92"/>
+    </inferredMetricsTieBreakers>
 </document>

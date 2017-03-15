@@ -10,12 +10,6 @@ import UIKit
 import GoogleSignIn
 
 class ViewController: UIViewController, GIDSignInUIDelegate {
-    
-    //MARK: Actions
-    
-    @IBAction func didTapSignOut(_ sender: Any) {
-        GIDSignIn.sharedInstance().signOut()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
