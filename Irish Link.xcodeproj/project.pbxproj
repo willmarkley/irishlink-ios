@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C907C5731E78E30C00179951 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C907C5721E78E30C00179951 /* GoogleService-Info.plist */; };
 		C92ACA721E776E9A001F1E33 /* Developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92ACA711E776E9A001F1E33 /* Developer.swift */; };
 		C974EC4C1E764CB400731EAD /* DeveloperTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C974EC4B1E764CB400731EAD /* DeveloperTableViewController.swift */; };
 		C9A5CCFE1E789ED7009BFF6B /* IdeaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5CCFD1E789ED7009BFF6B /* IdeaTableViewCell.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		AF3DA379554D72A206329B06 /* Pods-Irish Link.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Irish Link.release.xcconfig"; path = "Pods/Target Support Files/Pods-Irish Link/Pods-Irish Link.release.xcconfig"; sourceTree = "<group>"; };
+		C907C5721E78E30C00179951 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Irish Link/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C92ACA711E776E9A001F1E33 /* Developer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Developer.swift; sourceTree = "<group>"; };
 		C974EC4B1E764CB400731EAD /* DeveloperTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperTableViewController.swift; sourceTree = "<group>"; };
 		C9A5CCFD1E789ED7009BFF6B /* IdeaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaTableViewCell.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				C9A700AB1E68B78400FAE17D /* Assets.xcassets */,
 				C9A700AD1E68B78400FAE17D /* LaunchScreen.storyboard */,
 				C9A700B01E68B78400FAE17D /* Info.plist */,
+				C907C5721E78E30C00179951 /* GoogleService-Info.plist */,
 			);
 			path = "Irish Link";
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A700AF1E68B78400FAE17D /* LaunchScreen.storyboard in Resources */,
+				C907C5731E78E30C00179951 /* GoogleService-Info.plist in Resources */,
 				C9A700AC1E68B78400FAE17D /* Assets.xcassets in Resources */,
 				C9A700AA1E68B78400FAE17D /* Main.storyboard in Resources */,
 			);
