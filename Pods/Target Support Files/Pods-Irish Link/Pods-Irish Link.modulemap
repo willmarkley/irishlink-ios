@@ -1,0 +1,6 @@
+framework module Pods_Irish_Link {
+  umbrella header "Pods-Irish Link-umbrella.h"
+
+  export *
+  module * { export * }
+}
