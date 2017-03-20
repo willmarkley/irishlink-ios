@@ -17,6 +17,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let blueColor = UIColor(red: 86/255.0, green: 255/255.0, blue: 165/255.0, alpha: 1.0)
+        view.backgroundColor = blueColor
     }
 
     override func didReceiveMemoryWarning() {
