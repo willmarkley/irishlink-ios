@@ -50,7 +50,9 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
         }
         let inputDescription = descriptionTextField.text
         
-        let data = ["name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription!] as [String:Any]
+        let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        
+        let data = ["token": tok, "name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription!] as [String:Any]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         

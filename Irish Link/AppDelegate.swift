@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Perform any operations on signed in user here.
             let userId = user.userID
             let idToken = user.authentication.idToken // Safe to send to the server
+            UserDefaults.standard.setValue(idToken, forKey: "user_auth_idToken")
             let fullName = user.profile.name
             let ndemail = user.profile.email
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
@@ -46,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Segue to Homepage of Application after signing in
             let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let homePage = storyBoard.instantiateViewController(withIdentifier: "HomePage")
-            //homePage.user = user
             self.window?.rootViewController = homePage
         }
     }
