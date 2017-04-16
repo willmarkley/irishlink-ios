@@ -43,8 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let ndemail = user.profile.email
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
             
+            // Segue to Homepage of Application after signing in
             let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let homePage = storyBoard.instantiateViewController(withIdentifier: "HomePage")
+            //homePage.user = user
             self.window?.rootViewController = homePage
         }
     }
