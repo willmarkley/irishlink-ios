@@ -18,8 +18,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        let blueColor = UIColor(red: 86/255.0, green: 255/255.0, blue: 165/255.0, alpha: 1.0)
-        view.backgroundColor = blueColor
+        let color = UIColor(red: 222/255.0, green: 200/255.0, blue: 171/255.0, alpha: 1.0)
+        view.backgroundColor = color
     }
 
     override func didReceiveMemoryWarning() {

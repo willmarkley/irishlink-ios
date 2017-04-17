@@ -76,6 +76,8 @@ class AddDeveloperViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let color = UIColor(red: 222/255.0, green: 200/255.0, blue: 171/255.0, alpha: 1.0)
+        view.backgroundColor = color
     }
 
     override func didReceiveMemoryWarning() {

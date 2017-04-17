@@ -14,7 +14,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     var ideas = [Idea]()
     var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
-    let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
     
     //MARK: Actions
 
@@ -38,7 +37,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         
         var ideaEntries = [Idea]()
         
-        let data = ["token": "HELLO"] as [String:Any]
+        let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!] as [String:Any]
         print(data)
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -178,7 +177,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
                 inputDesktop = 1
             }
             
-            let data = ["token": tok, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
+            let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
             let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             
             request.httpMethod = "DELETE"
