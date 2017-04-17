@@ -14,6 +14,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     var developers = [Developer]()
     var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+    let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
     
     //MARK: Actions
     @IBAction func signOutBarButton(_ sender: UIBarButtonItem) {
@@ -35,6 +36,9 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var developerEntries = [Developer]()
+        
+        request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.httpBody = tok as? Data
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
@@ -67,7 +71,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
                     }
                 }
             }catch {
-                fatalError("error in JSONSerialization")
+                print("error in JSONSerialization")
             }
             self.developers = developerEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous

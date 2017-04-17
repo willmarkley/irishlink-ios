@@ -14,6 +14,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     var ideas = [Idea]()
     var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
+    let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
     
     //MARK: Actions
 
@@ -23,19 +24,26 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     //MARK: Private Functions
     
-    private func loadSampleIdeas() {
+    /*private func loadSampleIdeas() {
         let idea1 = Idea(name: "William", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: false, description: "App to connect ideators")
         let idea2 = Idea(name: "Catherine", email: "wmarkley@nd.edu", iOS: true, android: true, web: true, desktop: false, description: "Cottage App")
         let idea3 = Idea(name: "Dad", email: "wmarkley@nd.edu", iOS: false, android: true, web: false, desktop: true, description: "Sunset App")
         
         ideas += [idea1, idea2, idea3]
-    }
+    }*/
     
     private func loadApiIdeas() {
-        request.httpMethod = "GET"
+        request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var ideaEntries = [Idea]()
+        
+        let data = ["token": "HELLO"] as [String:Any]
+        print(data)
+        let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
@@ -56,19 +64,20 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
                         let entryWeb         = object["webapp"] as? NSNumber
                         let entryDesktop     = object["desktopapp"] as? NSNumber
                         let entryDescription = object["description"] as? String
+                        let entryMod         = object["mod"] as? Int
                         
                         let boolEntryiOS     = Bool(entryiOS!)
                         let boolEntryAndroid = Bool(entryAndroid!)
                         let boolEntryWeb     = Bool(entryWeb!)
                         let boolEntryDesktop = Bool(entryDesktop!)
                         
-                        let ideaEntry = Idea(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, description: entryDescription!)
+                        let ideaEntry = Idea(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, description: entryDescription!, mod: entryMod!)
                         
                         ideaEntries.append(ideaEntry)
                     }
                 }
             }catch {
-                fatalError("error in JSONSerialization")
+                print("error in JSONSerialization")
             }
             self.ideas = ideaEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
@@ -127,18 +136,24 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         return cell
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        if ideas[indexPath.row].mod==0 {
+            return false
+        }
+        else{
+            return true
+        }
     }
-    */
+    
 
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         var remove = true
+        
         if editingStyle == .delete {
             // Delete the row from the data source
             let inputName    = ideas[indexPath.row].name
@@ -162,8 +177,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
             if searchStr.range(of:"Desktop") != nil{
                 inputDesktop = 1
             }
-            
-            let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
             
             let data = ["token": tok, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
             let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)

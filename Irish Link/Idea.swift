@@ -16,10 +16,11 @@ class Idea {
     var email: String
     var apps: String
     var description: String
+    var mod: Int
     
     //MARK: Initialization
     
-    init(name: String, email: String, iOS: Bool, android: Bool, web: Bool, desktop: Bool, description: String){
+    init(name: String, email: String, iOS: Bool, android: Bool, web: Bool, desktop: Bool, description: String, mod: Int){
         self.name = name
         self.email = email
         self.apps = ""
@@ -36,6 +37,7 @@ class Idea {
             self.apps += "Desktop "
         }
         self.description = description
+        self.mod = mod
     }
 
 }
