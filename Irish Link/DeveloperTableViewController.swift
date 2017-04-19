@@ -20,7 +20,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     }
     
     private func loadApiDevelopers() {
-        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+        var request = URLRequest(url: URL(string: "http://35.188.19.140/developers")!)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -103,7 +103,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         
-        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+        var request = URLRequest(url: URL(string: "http://35.188.19.140/developers")!)
         request.httpMethod = "DELETE"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData

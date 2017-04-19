@@ -56,7 +56,7 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         
-        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
+        var request = URLRequest(url: URL(string: "http://35.188.19.140/ideas")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
