@@ -16,10 +16,11 @@ class Developer {
     var email: String
     var apps: String
     var languages: String
+    var mod: Int
     
     //MARK: Initialization
     
-    init(name: String, email: String, iOS: Bool, android: Bool, web: Bool, desktop: Bool, languages: String){
+    init(name: String, email: String, iOS: Bool, android: Bool, web: Bool, desktop: Bool, languages: String, mod: Int){
         self.name = name
         self.email = email
         self.apps = ""
@@ -36,6 +37,7 @@ class Developer {
             self.apps += "Desktop "
         }
         self.languages = languages
+        self.mod = mod
     }
     
 }

@@ -50,7 +50,7 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
         let inputDescription = descriptionTextField.text
         
         //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
-        let tok = "TESTOK"
+        let tok = "TESTTOK"
         
         let data = ["token": tok, "name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription!] as [String:Any]
         

@@ -33,7 +33,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
 
-        
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if error != nil {
@@ -70,6 +69,49 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
             }
             self.ideas = ideaEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
+        })
+        task.resume()
+    }
+    
+    private func deleteApiIdea(indexPath : IndexPath) {
+        let inputName    = ideas[indexPath.row].name
+        let inputEmail   = ideas[indexPath.row].email
+        var inputIos     = 0
+        var inputAndroid = 0
+        var inputWeb     = 0
+        var inputDesktop = 0
+        let inputDescription = ideas[indexPath.row].description
+        let searchStr    = ideas[indexPath.row].apps
+        
+        if searchStr.range(of:"iOS") != nil{
+            inputIos = 1
+        }
+        if searchStr.range(of:"Android") != nil{
+            inputAndroid = 1
+        }
+        if searchStr.range(of:"Web") != nil{
+            inputWeb = 1
+        }
+        if searchStr.range(of:"Desktop") != nil{
+            inputDesktop = 1
+        }
+        
+        //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        let tok = "TESTTOK"
+        
+        let data = ["token": tok, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
+        let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+            }
         })
         task.resume()
     }
@@ -138,57 +180,12 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        var remove = true
-        
         if editingStyle == .delete {
             // Delete the row from the data source
-            let inputName    = ideas[indexPath.row].name
-            let inputEmail   = ideas[indexPath.row].email
-            var inputIos     = 0
-            var inputAndroid = 0
-            var inputWeb     = 0
-            var inputDesktop = 0
-            let inputDescription = ideas[indexPath.row].description
-            let searchStr    = ideas[indexPath.row].apps
+            deleteApiIdea(indexPath: indexPath)
+            self.ideas.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
-            if searchStr.range(of:"iOS") != nil{
-                inputIos = 1
-            }
-            if searchStr.range(of:"Android") != nil{
-                inputAndroid = 1
-            }
-            if searchStr.range(of:"Web") != nil{
-                inputWeb = 1
-            }
-            if searchStr.range(of:"Desktop") != nil{
-                inputDesktop = 1
-            }
-            
-            let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
-            let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-            
-            var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
-            
-            request.httpMethod = "DELETE"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                
-                if error != nil {
-                    print(error)
-                }
-                let d = String(data: data!, encoding: .utf8)
-                if d == "The document with the given token was NOT removed"{
-                    print("ENTER")
-                    remove = false
-                }
-                if remove {
-                    self.ideas.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-            })
-            task.resume()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

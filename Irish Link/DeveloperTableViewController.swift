@@ -13,7 +13,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     //MARK: Properties
     
     var developers = [Developer]()
-    let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
     
     //MARK: Actions
     @IBAction func signOutBarButton(_ sender: UIBarButtonItem) {
@@ -27,8 +26,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         
         var developerEntries = [Developer]()
         
-        //request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
-        //request.httpBody = tok as? Data
+        //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
         let data = ["token": "TESTTOK"]
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -53,13 +51,14 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
                         let entryWeb       = object["webapp"] as? NSNumber
                         let entryDesktop   = object["desktopapp"] as? NSNumber
                         let entryLanguages = object["languages"] as? String
+                        let entryMod       = object["mod"] as? Int
                         
                         let boolEntryiOS     = Bool(entryiOS!)
                         let boolEntryAndroid = Bool(entryAndroid!)
                         let boolEntryWeb     = Bool(entryWeb!)
                         let boolEntryDesktop = Bool(entryDesktop!)
                         
-                        let developerEntry = Developer(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, languages: entryLanguages!)
+                        let developerEntry = Developer(name: entryName!, email: entryEmail!, iOS: boolEntryiOS, android: boolEntryAndroid, web: boolEntryWeb, desktop: boolEntryDesktop, languages: entryLanguages!, mod: entryMod!)
                         
                         developerEntries.append(developerEntry)
                     }
@@ -69,6 +68,51 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
             }
             self.developers = developerEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
+        })
+        task.resume()
+    }
+    
+    private func deleteApiDeveloper(indexPath: IndexPath) {
+        let inputName    = developers[indexPath.row].name
+        let inputEmail   = developers[indexPath.row].email
+        var inputIos     = 0
+        var inputAndroid = 0
+        var inputWeb     = 0
+        var inputDesktop = 0
+        let inputLanguages = developers[indexPath.row].languages
+        let searchStr    = developers[indexPath.row].apps
+        
+        if searchStr.range(of:"iOS") != nil{
+            inputIos = 1
+        }
+        if searchStr.range(of:"Android") != nil{
+            inputAndroid = 1
+        }
+        if searchStr.range(of:"Web") != nil{
+            inputWeb = 1
+        }
+        if searchStr.range(of:"Desktop") != nil{
+            inputDesktop = 1
+        }
+        
+        
+        //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        let tok = "TESTTOK"
+        
+        let data = ["token": tok, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "languages": inputLanguages] as [String:Any]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+            }
         })
         task.resume()
     }
@@ -121,24 +165,30 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         return cell
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        if developers[indexPath.row].mod==0 {
+            return false
+        }
+        else {
+            return true
+        }
     }
-    */
+    
 
-    /*
+
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            deleteApiDeveloper(indexPath: indexPath)
+            self.developers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
 }
