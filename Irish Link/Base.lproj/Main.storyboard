@@ -519,11 +519,11 @@
             </objects>
             <point key="canvasLocation" x="3357" y="360"/>
         </scene>
-        <!--Item 2-->
+        <!--Developers-->
         <scene sceneID="VYT-vK-gla">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m0B-NK-c2I" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="9rh-Dt-2WM"/>
+                    <tabBarItem key="tabBarItem" title="Developers" image="code" id="9rh-Dt-2WM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GjS-JG-iAT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -538,11 +538,11 @@
             </objects>
             <point key="canvasLocation" x="4480" y="883"/>
         </scene>
-        <!--Item 1-->
+        <!--Ideas-->
         <scene sceneID="Z0h-9N-DFj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tB6-IF-EEv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="a4S-Vu-kHi"/>
+                    <tabBarItem key="tabBarItem" title="Ideas" image="idea" id="a4S-Vu-kHi" customClass="idea"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RQg-lF-QPK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -560,6 +560,8 @@
     </scenes>
     <resources>
         <image name="IrishLink" width="1024" height="1024"/>
+        <image name="code" width="25" height="25"/>
+        <image name="idea" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8en-as-V92"/>
