@@ -21,7 +21,6 @@ class AddDeveloperViewController: UIViewController {
     @IBOutlet weak var languagesTextField: UITextField!
     
     var developers = [Developer]()
-    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
     
     //MARK: Actions
     
@@ -50,12 +49,14 @@ class AddDeveloperViewController: UIViewController {
         }
         let inputLanguages = languagesTextField.text
         
-        let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        let tok = "TESTTOK"
         
         let data = ["token": tok, "name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "languages": inputLanguages!] as [String:Any]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
 
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData

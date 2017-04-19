@@ -21,7 +21,6 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var desktopSwitch: UISwitch!
     
     var ideas = [Idea]()
-    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
     
     //MARK: Actions
 
@@ -50,12 +49,14 @@ class AddIdeaViewController: UIViewController, UITextFieldDelegate {
         }
         let inputDescription = descriptionTextField.text
         
-        let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        //let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
+        let tok = "TESTOK"
         
         let data = ["token": tok, "name": inputName!, "email": inputEmail!, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription!] as [String:Any]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
