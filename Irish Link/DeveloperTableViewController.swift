@@ -20,16 +20,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().signOut()
     }
     
-    //MARK: Private Functions
-    
-    private func loadSampleDevelopers() {
-        let developer1 = Developer(name: "William", email: "wmarkley@nd.edu", iOS: true, android: false, web: true, desktop: true, languages: "C++")
-        let developer2 = Developer(name: "Claire", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: true, languages: "Java")
-        let developer3 = Developer(name: "Catherine", email: "wmarkley@nd.edu", iOS: false, android: false, web: true, desktop: false, languages: "Python")
-        
-        developers += [developer1, developer2, developer3]
-    }
-    
     private func loadApiDevelopers() {
         var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
         request.httpMethod = "PUT"
@@ -86,8 +76,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //loadSampleDevelopers()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -150,31 +138,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 

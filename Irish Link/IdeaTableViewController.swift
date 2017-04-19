@@ -20,16 +20,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().signOut()
     }
     
-    //MARK: Private Functions
-    
-    /*private func loadSampleIdeas() {
-        let idea1 = Idea(name: "William", email: "wmarkley@nd.edu", iOS: true, android: true, web: false, desktop: false, description: "App to connect ideators")
-        let idea2 = Idea(name: "Catherine", email: "wmarkley@nd.edu", iOS: true, android: true, web: true, desktop: false, description: "Cottage App")
-        let idea3 = Idea(name: "Dad", email: "wmarkley@nd.edu", iOS: false, android: true, web: false, desktop: true, description: "Sunset App")
-        
-        ideas += [idea1, idea2, idea3]
-    }*/
-    
     private func loadApiIdeas() {
         var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
         request.httpMethod = "PUT"
@@ -87,8 +77,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //loadSampleIdeas()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -205,31 +193,5 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
