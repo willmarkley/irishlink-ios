@@ -7,4 +7,5 @@ target 'Irish Link' do
 
   # Pods for Irish Link
   pod 'Google/SignIn'
+  pod 'IQKeyboardManagerSwift'
 end

@@ -9,6 +9,7 @@
 import UIKit
 import Google
 import GoogleSignIn
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -23,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         GIDSignIn.sharedInstance().delegate = self
+        
+        IQKeyboardManager.sharedManager().enable = true
         
         return true
     }
