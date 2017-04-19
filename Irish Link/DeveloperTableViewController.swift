@@ -13,7 +13,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     //MARK: Properties
     
     var developers = [Developer]()
-    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
     let tok = UserDefaults.standard.value(forKey: "user_auth_idToken")!
     
     //MARK: Actions
@@ -32,18 +31,23 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     }
     
     private func loadApiDevelopers() {
-        request.httpMethod = "GET"
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/developers")!)
+        request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var developerEntries = [Developer]()
         
-        request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
-        request.httpBody = tok as? Data
+        //request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
+        //request.httpBody = tok as? Data
+        let data = ["token": "TESTTOK"]
+        let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if error != nil {
-                print(error)
+                print(error!.localizedDescription)
             }
             
             let responseData = data
@@ -71,7 +75,7 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
                     }
                 }
             }catch {
-                print("error in JSONSerialization")
+                fatalError("error in JSONSerialization")
             }
             self.developers = developerEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
@@ -82,7 +86,6 @@ class DeveloperTableViewController: UITableViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadApiDevelopers()
         //loadSampleDevelopers()
 
         // Uncomment the following line to preserve selection between presentations

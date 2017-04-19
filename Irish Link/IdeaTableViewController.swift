@@ -13,7 +13,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     //MARK: Properties
     
     var ideas = [Idea]()
-    var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
     
     //MARK: Actions
 
@@ -32,13 +31,14 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     }*/
     
     private func loadApiIdeas() {
+        var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var ideaEntries = [Idea]()
         
-        let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!] as [String:Any]
-        print(data)
+        //let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!] as [String:Any]
+        let data = ["token": "TESTTOK"]
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
@@ -47,7 +47,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if error != nil {
-                print(error)
+                print(error!.localizedDescription)
             }
             
             let responseData = data
@@ -76,7 +76,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
                     }
                 }
             }catch {
-                print("error in JSONSerialization")
+                fatalError("error in JSONSerialization")
             }
             self.ideas = ideaEntries
             self.tableView.reloadData()  // shows the data in table since the completion handler is asynchronous
@@ -87,7 +87,6 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadApiIdeas()
         //loadSampleIdeas()
 
         // Uncomment the following line to preserve selection between presentations
@@ -179,6 +178,8 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
             
             let data = ["token": UserDefaults.standard.value(forKey: "user_auth_idToken")!, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
             let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            
+            var request = URLRequest(url: URL(string: "http://54.82.225.169:8080/ideas")!)
             
             request.httpMethod = "DELETE"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
