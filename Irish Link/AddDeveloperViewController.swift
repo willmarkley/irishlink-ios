@@ -56,7 +56,7 @@ class AddDeveloperViewController: UIViewController {
         
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
 
-        var request = URLRequest(url: URL(string: "http://35.188.19.140/developers")!)
+        var request = URLRequest(url: URL(string: "http://104.197.150.158/developers")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData

@@ -21,7 +21,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
     }
     
     private func loadApiIdeas() {
-        var request = URLRequest(url: URL(string: "http://35.188.19.140/ideas")!)
+        var request = URLRequest(url: URL(string: "http://104.197.150.158/ideas")!)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -102,7 +102,7 @@ class IdeaTableViewController: UITableViewController, GIDSignInUIDelegate {
         let data = ["token": tok, "name": inputName, "email": inputEmail, "iosapp": inputIos, "androidapp": inputAndroid, "webapp": inputWeb, "desktopapp": inputDesktop, "description": inputDescription] as [String:Any]
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         
-        var request = URLRequest(url: URL(string: "http://35.188.19.140/ideas")!)
+        var request = URLRequest(url: URL(string: "http://104.197.150.158/ideas")!)
         request.httpMethod = "DELETE"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
